@@ -9,6 +9,7 @@ interface IProps {
 
 
 function CreateUser({ username, email, onChange, onCreate }:IProps) {
+  console.log('b');
   return (
     <div>
       <input
@@ -28,4 +29,4 @@ function CreateUser({ username, email, onChange, onCreate }:IProps) {
   );
 }
 
-export default CreateUser;
+export default React.memo(CreateUser);

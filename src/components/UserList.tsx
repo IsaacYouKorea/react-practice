@@ -10,11 +10,15 @@ interface IPropsUsers {
 function UserList({ users, onRemove, onToggle }:IPropsUsers) {
   return (
     <div>
-      {users.map(user => (
+      {users.length && users.map(user => (
         <User user={user} key={user.id} onRemove={onRemove} onToggle={onToggle}/>
       ))}
     </div>
   );
 }
 
-export default UserList;
+UserList.defaultProps = {
+  users: []
+}
+
+export default React.memo(UserList);
