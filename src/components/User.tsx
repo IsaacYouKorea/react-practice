@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useUserDispatch } from './UserManager';
+
 
 interface IProps {
   user: User,
-  onRemove: (e: any) => void,
-  onToggle: (e: any) => void
 }
-function User({ user, onRemove, onToggle }: IProps) {
+function User({ user }: IProps) {
   useEffect(() => {
     console.log('user 값이 설정됨');
     console.log(user);
@@ -14,7 +14,6 @@ function User({ user, onRemove, onToggle }: IProps) {
       console.log(user);
     };
   }, [user]);
-  
   return (
     <div>
       <b
@@ -22,13 +21,17 @@ function User({ user, onRemove, onToggle }: IProps) {
           cursor: 'pointer',
           color: user.active ? 'green' : 'black'
         }}
-        onClick={() => onToggle(user.id)}
+        onClick={() => {
+          // dispatch({type: 'TOGGLE_USER', id: user.id});
+        }}
       >
         {user.username}
       </b>
       &nbsp;
       <span>({user.email})</span>
-      <button onClick={() => onRemove(user.id)}>삭제</button>
+      <button onClick={() => {
+        // dispatch({type: 'REMOVE_USER', id: user.id});
+      }}>삭제</button>
     </div>
   );
 }

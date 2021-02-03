@@ -1,24 +1,28 @@
 import React from 'react';
 import User from './User';
 
-interface IPropsUsers {
-  users: User[],
-  onRemove: (e: any) => void,
-  onToggle: (e: any) => void
+type IPropsUsers = {
+  users: User[]
 }
 
-function UserList({ users, onRemove, onToggle }:IPropsUsers) {
+// function UserList({ users }:IPropsUsers) {
+//   return (
+//     <div>
+//       {users.length && users.map(user => (
+//         <User user={user} key={user.id}/>
+//       ))}
+//     </div>
+//   );
+// }
+
+const UserList: React.FC<IPropsUsers> = ({users}) => {
   return (
     <div>
       {users.length && users.map(user => (
-        <User user={user} key={user.id} onRemove={onRemove} onToggle={onToggle}/>
+        <User user={user} key={user.id}/>
       ))}
     </div>
   );
-}
-
-UserList.defaultProps = {
-  users: []
-}
+};
 
 export default React.memo(UserList);
